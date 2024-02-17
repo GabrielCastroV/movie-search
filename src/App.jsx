@@ -1,15 +1,26 @@
 import './App.css'
 import { useMovies } from './hooks/useMovies' 
 import Movies from './components/Movies.jsx'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import debounce from 'just-debounce-it';
 
 function App() {
   const [sort, setSort] = useState(false)
   const [search, setSearch] = useState('');
   const { movies, loading, getMovies } = useMovies({ search, sort });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedGetMovies = useCallback(
+    debounce(search => {
+      getMovies({ search })
+    }, 300)
+    , [getMovies]
+  )
+
   const handleChange = e => {
-    setSearch(e.target.value)
+    const newSearch = e.target.value;
+    setSearch(newSearch);
+    debouncedGetMovies(newSearch);
   }
 
   const handleSubmit = e => {
