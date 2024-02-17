@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
   const [search, setSearch] = useState('');
-  const { movies, getMovies } = useMovies({ search });
+  const { movies, loading, getMovies } = useMovies({ search });
 
   const handleChange = e => {
     setSearch(e.target.value)
@@ -26,7 +26,9 @@ function App() {
         </form>
       </header>
       <main>
-        <Movies movies={movies}/>
+        {
+          loading ? <p style={{textAlign: 'center'}}>Cargando...</p> : <Movies movies={movies}/>
+        }
       </main>
     </>
   )
