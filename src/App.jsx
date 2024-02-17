@@ -4,8 +4,9 @@ import Movies from './components/Movies.jsx'
 import { useState } from 'react';
 
 function App() {
+  const [sort, setSort] = useState(false)
   const [search, setSearch] = useState('');
-  const { movies, loading, getMovies } = useMovies({ search });
+  const { movies, loading, getMovies } = useMovies({ search, sort });
 
   const handleChange = e => {
     setSearch(e.target.value)
@@ -17,12 +18,17 @@ function App() {
     getMovies({ search });
   }
 
+  const handleSort = () => {
+    setSort(!sort);
+  }
+
   return (
     <>
       <header style={{display: "flex", justifyContent: "center"}}>
         <form onSubmit={handleSubmit} style={{display: "flex"}}>
           <input onChange={handleChange} placeholder='Avatar, Up, Spiderman...'/>
           <button  type="submit">Buscar</button>
+          <input type="checkbox" onChange={handleSort} checked={sort} />
         </form>
       </header>
       <main>
