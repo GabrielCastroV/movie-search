@@ -1,4 +1,4 @@
-export const searchMovie = async ({ search  }) => {
+export const searchMovie = async ({ search }) => {
 
     if (search === '') return
 

@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import defaultImg from '../img/default-movie.jpg'
+
 function ListOfMovies ({ movies }) {
     return (
         <ul>
@@ -7,7 +9,7 @@ function ListOfMovies ({ movies }) {
                     <li key={movie.id}>
                         <h3 style={{ textAlign: 'center' }}>{movie.title}</h3>
                         <p>{movie.year}</p>
-                        <img src={movie.poster} alt={movie.title}/>
+                        <img src={movie.poster !== 'N/A' ? movie.poster : defaultImg} alt={movie.title}/>
                     </li>
                 ))
             }
