@@ -15,7 +15,7 @@ function ListOfMovies ({ movies }) {
                         <h3 style={{ textAlign: 'center' }}>{movie.title}</h3>
                         <div className='type' style={{backgroundColor: moviesTypes(movie.type)}}>{movie.type}</div>
                         <p>{movie.year}</p>
-                        <img src={(movie.poster !== 'N/A') ? movie.poster : defaultImg} alt={movie.title}/>
+                        <img src={movie.poster !== 'N/A' ? movie.poster : defaultImg} alt={movie.title}/>
                     </li>
                 ))
             }
@@ -25,7 +25,7 @@ function ListOfMovies ({ movies }) {
 
 function NoMoviesResults () {
     return (
-        <p style={{textAlign: 'center'}}>No se encontraron peliculas para esta busqueda</p>
+        <p style={{textAlign: 'center'}}>Introduce el nombre de una pelicula válida</p>
     )
 }
 

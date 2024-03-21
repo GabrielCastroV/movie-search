@@ -38,7 +38,7 @@ function App() {
       <h1 style={{fontFamily: 'sans-serif'}}>Buscador de peliculas</h1>
       <header style={{display: "flex", justifyContent: "center"}}>
         <form onSubmit={handleSubmit} style={{display: "flex", alignItems: 'center'}}>
-          <input onChange={handleChange} placeholder='Avatar, Up, Spiderman...'/>
+          <input onChange={handleChange} placeholder='Avatar, Thor, Spiderman...'/>
           <button  type="submit">Buscar</button>
           <div className="checkbox">
             <input id="checkbox1" className="checkbox__input" type="checkbox" onChange={handleSort} checked={sort}/>

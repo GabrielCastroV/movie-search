@@ -5,7 +5,7 @@ export function useMovies ({ search, sort }) {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const previousSearch = useRef(search)
+    const previousSearch = useRef(search);
 
     const getMovies = useMemo(()=>{
         return async ({ search }) => {
