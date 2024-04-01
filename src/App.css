@@ -20,6 +20,10 @@ h1{
   text-align: center;
 }
 
+h3 {
+  padding: 0 10px;
+}
+
 form {
     margin-bottom: 2rem;
     display: flex;
