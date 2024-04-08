@@ -1,13 +1,36 @@
 import './App.css'
 import { useMovies } from './hooks/useMovies' 
 import Movies from './components/Movies.jsx'
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import debounce from 'just-debounce-it';
 
 function App() {
   const [sort, setSort] = useState(false)
   const [search, setSearch] = useState('');
   const { movies, loading, getMovies } = useMovies({ search, sort });
+
+  const [trend, setTrend] = useState([])
+  useEffect(()=>{
+      const fetchData = async () => {
+        try {
+          const options = {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5Y2QxZmZlYzczYmFkMDZhZTVjYzE3YmM1ZTM2ZmJlNyIsInN1YiI6IjY1MWM5MGQyMjIzYThiMDBhYjNkNzk1NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1lR71ex3VtGpR59edjtAvEmtU96NqOqvAI8B7CpQV_k'
+            }
+          };
+          
+          const data = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+          const res = await data.json()
+          setTrend(res.results)
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchData()
+    },[])
+
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedGetMovies = useCallback(
@@ -51,7 +74,7 @@ function App() {
       </header>
       <main>
         {
-          loading ? <p style={{textAlign: 'center'}}>Cargando...</p> : <Movies movies={movies}/>
+          loading ? <p style={{textAlign: 'center'}}>Cargando...</p> : <Movies movies={movies} trend={trend}/>
         }
       </main>
     </>
