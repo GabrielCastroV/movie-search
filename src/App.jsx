@@ -63,13 +63,16 @@ function App() {
         <form onSubmit={handleSubmit} style={{display: "flex", alignItems: 'center'}}>
           <input onChange={handleChange} placeholder='Avatar, Thor, Spiderman...'/>
           <button  type="submit">Buscar</button>
-          <div className="checkbox">
-            <input id="checkbox1" className="checkbox__input" type="checkbox" onChange={handleSort} checked={sort}/>
-            <label htmlFor="checkbox1" className="checkbox__label">
-              <span className="checkbox__custom"></span>
-              Ordenar
-            </label>
+          {
+            movies &&           
+            <div className="checkbox">
+              <input id="checkbox1" className="checkbox__input" type="checkbox" onChange={handleSort} checked={sort}/>
+              <label htmlFor="checkbox1" className="checkbox__label">
+                <span className="checkbox__custom"></span>
+                Ordenar
+              </label>
           </div>
+          }
         </form>
       </header>
       <main>
